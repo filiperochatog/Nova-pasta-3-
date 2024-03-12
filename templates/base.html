@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclua o arquivo CSS do Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Adicione estilos personalizados -->
+    <style>
+        .bg-custom {
+            background-color: #2F80ED !important;
+        }
+
+        .brand-white {
+            color: #FFFFFF !important;
+            font-family: 'Sansation', sans-serif !important;
+        }
+
+        .brand-yellow {
+            color: #FFB800 !important;
+            font-family: 'Sansation', sans-serif !important;
+        }
+
+        /* Importar a fonte Sansation */
+        @import url('https://fonts.googleapis.com/css2?family=Sansation:wght@400;700&display=swap');
+
+        /* Adicionando a linha branca embaixo do texto */
+        .navbar-brand {
+            position: relative;
+        }
+
+        .navbar-brand:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+    </style>
+    {% block 'head' %} {% endblock %}
+    <title> {% block 'titulo' %} {% endblock %} </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+        <a class="navbar-brand brand-white" href="#"><span style="font-weight: bold;">Edu</span><span class="brand-yellow" style="font-weight: normal;">Insights</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Right-aligned items -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ user.username }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% block 'conteudo' %} {% endblock %}
+    <!-- Inclua o arquivo JavaScript do Bootstrap (bundle inclui Popper.js) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Inclua seus arquivos JavaScript personalizados aqui -->
+</body>
+</html>

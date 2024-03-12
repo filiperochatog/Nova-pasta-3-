@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Sansation"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #003452;
+      }
+
+      .centralizado {
+        width: 70%; /* Largura do retângulo interno */
+        height: 80%; /* Altura do retângulo interno */
+        background: linear-gradient(90deg, #72c6ef 0%, #014379 75%);
+        /* Cor de fundo do retângulo interno */
+        position: absolute; /* Posicionamento absoluto em relação ao retângulo pai */
+        top: 10%; /* Alinha o retângulo interno verticalmente */
+        left: 15%; /* Alinha o retângulo interno horizontalmente */
+      }
+
+      .formulario {
+        margin-top: -250px;
+      }
+
+      h1 {
+        margin-top: 0px;
+        margin-left: 405px;
+        font-family: Sansation;
+        color: #ffffff;
+      }
+
+      h2 {
+        font-family: Sansation;
+        text-align: center; /* centraliza o texto */
+        margin-top: 130px;
+        margin-left: 90px;
+        color: white;
+      }
+
+      .highlight-yellow {
+        color: #ffb800;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        font-size: 40px;
+      }
+
+      .highlight-white {
+        font-size: 40px;
+        color: white;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+      }
+
+      .icone-customizado {
+        color: wheat;
+        margin-top: 135px; /* Ajusta para baixo */
+        margin-left: 10px; /* Ajusta para a direita */
+        font-size: 30px;
+      }
+
+      .formulario {
+        margin-top: -100px;
+        margin-left: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {% if status == '1'%}
+      <div class="alert alert-danger" role="alert">
+        Email ou senha inválidos!
+      </div>
+      {% endif %}
+
+      <div class="container">
+        {% if status == '2'%}
+        <div class="alert alert-danger" role="alert">
+          Faça login antes de acessar o sistema!
+        </div>
+        {% endif %}
+
+        
+      <div class="row centralizado">
+        <img
+          src="{% static 'img/teste.jpg' %}"
+          class="img-fluid"
+          alt="Imagem de exemplo"
+          style="
+            width: 400px; /* Largura específica */
+            height: 595px; /* Altura específica */
+            top: 0px; /* Posição superior específica */
+            left: 0px; /* Posição esquerda específica */
+            position: absolute; /* Define posição absoluta para que as propriedades top e left funcionem */
+            object-fit: cover; /* Ajuste para cobrir todo o espaço sem distorção */
+          "
+        />
+        <h1 class="text-center mb-4">Coordenador/</h1>
+        <h1
+          class="text-center mb-4"
+          style="margin-top: 40px; margin-left: -210px"
+        >
+          Professor
+        </h1>
+        <h2>
+          <span class="highlight-white">EDU</span
+          ><span class="highlight-yellow">Insights</span
+          ><span class="highlight-yellow insights-text"> </span>
+        </h2>
+        <i class="bi bi-pencil-fill icone-customizado"></i>
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4 formulario">
+          <form method="POST" action="{% url 'valida_login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="email"></label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="senha"></label>
+              <input
+                type="password"
+                class="form-control"
+                id="senha"
+                name="senha"
+                placeholder="Senha..."
+              />
+            </div>
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-info btn-lg">Entrar</button>
+              <a href="{% url 'cadastro' %}" class="btn btn-info btn-lg"
+                >Cadastrar</a
+              >
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
